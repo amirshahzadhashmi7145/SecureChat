@@ -27,7 +27,7 @@ const ChatHeader = () => {
                 <div
                     className="h-12 w-12 p-2 bg-yellow-500 rounded-full text-white font-semibold flex items-center justify-center"
                 >
-                    RA
+                    <img src='https://avatar.iran.liara.run/username?username=amir+shehzad' align='avatar'/>
                 </div>
             </div>
 

@@ -41,10 +41,13 @@ const Chat = () => {
                     await socket.emit("joinRoom", {roomName: response.data.userId});
                 })
 
+                let userId = response.data.userId;
+
                 axios.get('http://localhost:8000/auth/getAllUsers', {withCredentials: true})
                     .then((response) => {
                         if (response) {
-                            setUsers(response.data)
+                            const users = response.data.filter(user => user._id !== userId);
+                            setUsers(users)
                         }
                     })
                     .catch((error) => {
@@ -145,7 +148,7 @@ const Chat = () => {
 
 
                 {/*messages*/}
-                <div className="w-full px-5 flex flex-col justify-between">
+                <div className="w-full px-5 flex flex-col justify-between cursor-all-scroll">
                     <div className="flex flex-col mt-5 overflow-y-auto">
 
                         <div ref={myRef}>

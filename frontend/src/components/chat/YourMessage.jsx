@@ -6,7 +6,7 @@ const YourMessage = ({text}) => {
             {text}
         </div>
         <img
-            src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+            src="https://avatar.iran.liara.run/public"
             alt=""
             className="mt-1.5 object-cover h-9 w-9 rounded-full"
         />

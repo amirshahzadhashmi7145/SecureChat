@@ -42,12 +42,16 @@ const Signup = () => {
             })
     }
 
+    const handleLoginNavigation = () => {
+        navigate("/login");
+    };
+
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     className="mx-auto h-96 w-96"
-                    src="https://png.pngtree.com/png-clipart/20230915/original/pngtree-secure-chat-icon-with-locker-and-password-symbol-vector-illustration-vector-png-image_12211142.png" />
+                    src="https://png.pngtree.com/png-clipart/20230915/original/pngtree-secure-chat-icon-with-locker-and-password-symbol-vector-illustration-vector-png-image_12211142.png"  alt='logo'/>
                 <h2 className="-mt-14 text-3xl tracking-tight font-bold leading-9 text-gray-900">Get Registered With Us</h2>
             </div>
 
@@ -72,7 +76,8 @@ const Signup = () => {
                     </div>
 
                     <div>
-                        <label className="pb-1.5 text-start block font-medium text-gray-700 text-sm leading-6">Username</label>
+                        <label
+                            className="pb-1.5 text-start block font-medium text-gray-700 text-sm leading-6">Username</label>
                         <div>
                             <input
                                 id='username'
@@ -130,6 +135,17 @@ const Signup = () => {
                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                             Register
                         </button>
+                    </div>
+                    <div className="text-center">
+                        <p className="text-sm text-gray-600">
+                            Already have an account?{" "}
+                            <span
+                                onClick={handleLoginNavigation}
+                                className="text-indigo-600 hover:text-indigo-500 cursor-pointer"
+                            >
+                                Sign in here
+                            </span>
+                        </p>
                     </div>
 
                 </form>
