@@ -16,7 +16,7 @@ docker-compose.yml
 docker-compose.override.yml
 docker-compose.prod.yml
 docker-compose.dev.yml
-.docker-ignore
+.dockerignore
 
 # Docker volumes and data
 data/
@@ -58,7 +58,7 @@ frontend/docker-compose.yml
 frontend/docker-compose.override.yml
 frontend/docker-compose.prod.yml
 frontend/docker-compose.dev.yml
-frontend/.docker-ignore
+frontend/.dockerignore
 
 # Backend-specific ignores
 /backend/node_modules/
@@ -79,4 +79,4 @@ backend/docker-compose.yml
 backend/docker-compose.override.yml
 backend/docker-compose.prod.yml
 backend/docker-compose.dev.yml
-backend/.docker-ignore
+backend/.dockerignore
