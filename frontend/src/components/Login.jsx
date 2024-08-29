@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/login',{username:username,password:password},{withCredentials:true})
+        axios.post('http://34.67.130.26/securechat/api/login',{username:username,password:password},{withCredentials:true})
             .then((response) => {
             if(response.data.Status === "Success"){
                 console.log(response.data)

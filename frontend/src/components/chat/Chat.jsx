@@ -32,7 +32,7 @@ const Chat = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8000/getCurrentUserId', {withCredentials: true})
+        axios.get('http://34.67.130.26/securechat/api/getCurrentUserId', {withCredentials: true})
             .then((response) => {
                 setUserId(response.data.userId)
 
@@ -43,7 +43,7 @@ const Chat = () => {
 
                 let userId = response.data.userId;
 
-                axios.get('http://localhost:8000/auth/getAllUsers', {withCredentials: true})
+                axios.get('http://34.67.130.26/securechat/api/auth/getAllUsers', {withCredentials: true})
                     .then((response) => {
                         if (response) {
                             const users = response.data.filter(user => user._id !== userId);
@@ -75,7 +75,7 @@ const Chat = () => {
     useEffect(() => {
         if(recipientId !== "") {
             if(userId !== ""){
-                axios.get(`http://localhost:8000/auth/${userId}/${recipientId}`,{withCredentials:true})
+                axios.get(`http://34.67.130.26/securechat/api/auth/${userId}/${recipientId}`,{withCredentials:true})
                     .then((response) => {setMessages(response.data)})
             }
         }
@@ -102,7 +102,7 @@ const Chat = () => {
             const count = generateUniqueId();
             setMessages((prevState) => [...prevState,{_id: count.toString(),senderId:userId,recipient:recipientId,text:message}])
             await socket.emit('privateMessage',{message:message,receiverId:recipientId,senderId:userId});
-            await axios.post('http://localhost:8000/auth/sendMessage',{senderId:userId,recipient:recipientId,text:message},{withCredentials:true});
+            await axios.post('http://34.67.130.26/securechat/api/auth/sendMessage',{senderId:userId,recipient:recipientId,text:message},{withCredentials:true});
             setMessage('');
             myRef.current.scrollIntoView(false,{behavior: "smooth",block: "end"});
         }

@@ -4,7 +4,7 @@ const ChatHeader = () => {
     const navigate = useNavigate();
     const handleClick = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/logout',{},{withCredentials:true}).then(response => {
+        axios.post('http://34.67.130.26/securechat/api/logout',{},{withCredentials:true}).then(response => {
             if(response.status === 200){
                 alert("Good Bye!")
                 navigate('/login')
