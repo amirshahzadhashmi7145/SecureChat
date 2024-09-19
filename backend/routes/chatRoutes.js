@@ -13,7 +13,7 @@ router.use(cors({
 }));
 router.use(auth);
 
-router.get("/getAllUsers", async (req,res) => {
+router.get("/api/getAllUsers", async (req,res) => {
     try{
         const users = await User.find({});
         if(!users) {
@@ -28,7 +28,7 @@ router.get("/getAllUsers", async (req,res) => {
 })
 
 //need improvement as whether both users exist?
-router.post("/sendMessage", async (req,res) => {
+router.post("/api/sendMessage", async (req,res) => {
     try {
         const {senderId,recipient,text} = req.body;
         const message = new Message({senderId,recipient,text});
@@ -39,7 +39,7 @@ router.post("/sendMessage", async (req,res) => {
     }
 })
 
-router.get('/:senderId/:recipientId', async (req, res) => {
+router.get('/api/:senderId/:recipientId', async (req, res) => {
     try {
         const {senderId, recipientId} = req.params;
 

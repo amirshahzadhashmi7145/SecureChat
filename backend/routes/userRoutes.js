@@ -13,7 +13,11 @@ router.use(cors({
     credentials: true
 }));
 
-router.post("/login", async (req,res) => {
+router.get("/api/oops", (req, res) => {
+    res.send("Ok ok")
+})
+
+router.post("/api/login", async (req,res) => {
     try{
         const {username,password} = req.body;
         const user = await User.findOne({username: username});
@@ -38,7 +42,7 @@ router.post("/login", async (req,res) => {
     }
 })
 
-router.post("/register", async (req,res) => {
+router.post("/api/register", async (req,res) => {
     try {
         const {name,username,email,password} = req.body;
         const user = await User.findOne({username:username});
@@ -59,7 +63,7 @@ router.post("/register", async (req,res) => {
     }
 })
 
-router.post("/logout", (req, res) => {
+router.post("/api/logout", (req, res) => {
     // Clear the user's session or token (depending on your authentication setup)
     res.clearCookie('token'); // Assuming you stored the token in a cookie
 
@@ -68,7 +72,7 @@ router.post("/logout", (req, res) => {
     res.status(200).json({ message: "Logout successful" });
 });
 
-router.get("/getCurrentUserId", (req,res) => {
+router.get("/api/getCurrentUserId", (req,res) => {
     const token = req.cookies.token;
     if(!token) {
         return res.status(401).send("Unauthorized")

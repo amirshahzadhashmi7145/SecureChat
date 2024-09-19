@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
 
 const Signup = () => {
     const [name,setName] = useState('');
@@ -24,7 +25,7 @@ const Signup = () => {
     )
     const handleClick = (e) => {
         e.preventDefault();
-        axios.post('http://34.67.130.26/securechat/api/register',{name:name,username:username,password:password,email:email})
+        axios.post(`${baseUrl}/api/register`,{name:name,username:username,password:password,email:email})
             .then((response) => {
                 console.log(response)
                 if(response.status === 200){

@@ -3,6 +3,8 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {loginSuccess} from "../redux/actions/authAction.js";
 import {useNavigate} from "react-router-dom";
+// eslint-disable-next-line no-undef
+const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
 
 const Login = () => {
     const [username,setUsername] = useState('');
@@ -13,7 +15,7 @@ const Login = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        axios.post('http://34.67.130.26/securechat/api/login',{username:username,password:password},{withCredentials:true})
+        axios.post(`${baseUrl}/api/login`,{username:username,password:password},{withCredentials:true})
             .then((response) => {
             if(response.data.Status === "Success"){
                 console.log(response.data)

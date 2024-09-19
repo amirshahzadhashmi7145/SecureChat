@@ -1,10 +1,11 @@
 import axios from 'axios'
 import {useNavigate} from "react-router-dom";
+const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL
 const ChatHeader = () => {
     const navigate = useNavigate();
     const handleClick = (e) => {
         e.preventDefault();
-        axios.post('http://34.67.130.26/securechat/api/logout',{},{withCredentials:true}).then(response => {
+        axios.post(`${baseUrl}/api/logout`,{},{withCredentials:true}).then(response => {
             if(response.status === 200){
                 alert("Good Bye!")
                 navigate('/login')

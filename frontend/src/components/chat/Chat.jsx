@@ -7,13 +7,12 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {io} from 'socket.io-client';
-const socket = io('http://localhost:8000',{
+const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
+const socket = io(`${baseUrl}`,{
     withCredentials: true,
     autoConnect: false
 })
 import {v4 as uuidv4} from "uuid";
-
-
 
 const Chat = () => {
     const myRef = useRef(null);
@@ -32,7 +31,7 @@ const Chat = () => {
 
 
     useEffect(() => {
-        axios.get('http://34.67.130.26/securechat/api/getCurrentUserId', {withCredentials: true})
+        axios.get(`${baseUrl}/api/getCurrentUserId`, {withCredentials: true})
             .then((response) => {
                 setUserId(response.data.userId)
 
@@ -43,7 +42,7 @@ const Chat = () => {
 
                 let userId = response.data.userId;
 
-                axios.get('http://34.67.130.26/securechat/api/auth/getAllUsers', {withCredentials: true})
+                axios.get(`${baseUrl}/auth/api/getAllUsers`, {withCredentials: true})
                     .then((response) => {
                         if (response) {
                             const users = response.data.filter(user => user._id !== userId);
@@ -75,7 +74,7 @@ const Chat = () => {
     useEffect(() => {
         if(recipientId !== "") {
             if(userId !== ""){
-                axios.get(`http://34.67.130.26/securechat/api/auth/${userId}/${recipientId}`,{withCredentials:true})
+                axios.get(`${baseUrl}/auth/api/${userId}/${recipientId}`,{withCredentials:true})
                     .then((response) => {setMessages(response.data)})
             }
         }
@@ -102,7 +101,7 @@ const Chat = () => {
             const count = generateUniqueId();
             setMessages((prevState) => [...prevState,{_id: count.toString(),senderId:userId,recipient:recipientId,text:message}])
             await socket.emit('privateMessage',{message:message,receiverId:recipientId,senderId:userId});
-            await axios.post('http://34.67.130.26/securechat/api/auth/sendMessage',{senderId:userId,recipient:recipientId,text:message},{withCredentials:true});
+            await axios.post(`${baseUrl}/auth/api/sendMessage`,{senderId:userId,recipient:recipientId,text:message},{withCredentials:true});
             setMessage('');
             myRef.current.scrollIntoView(false,{behavior: "smooth",block: "end"});
         }
