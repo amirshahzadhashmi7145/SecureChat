@@ -61,6 +61,6 @@ io.on("connection", (socket) => {
     })
 })
 
-server.listen(8000,() => {
+server.listen(port,() => {
     console.log(`Server started on ${port}`)
 })
